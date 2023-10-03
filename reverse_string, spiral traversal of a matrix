@@ -17,3 +17,43 @@ class Solution
 
 or simply
 reverse(str.begin(),str.end());
+***************************************************************************************************************************************************************************************************************
+spiral traversal of a matrix
+vector<int> spiralOrder(vector<vector<int>>& matrix) {
+    int r=matrix.size();
+    int c=matrix[0].size();
+    int k=0;
+    vector<int>v;
+    // cout<<ceil(r/2.0)<<" **"<<endl;
+    int p=ceil(r/2.0);
+    while(k<p){
+            stack<int>st,stk;
+            for(int i=k;i<r-k;i++){
+                for(int j=k;j<c-k;j++){
+                    if(i==k){
+                        v.push_back(matrix[i][j]);
+                    }
+                    if(j==c-1-k && i!=r-1-k && i!=k){
+                        v.push_back(matrix[i][j]);
+                    }
+                    if(j==k && k!=c-1-k && i!=k && i!=r-1-k){
+                        st.push(matrix[i][j]);
+                    }
+                    if(i==r-1-k && k!=r-1-k){
+                        stk.push(matrix[i][j]);
+                    }
+                }
+            }
+            while(!stk.empty())
+            {
+                v.push_back(stk.top());
+                stk.pop();
+            }
+            while(!st.empty()){
+                v.push_back(st.top());
+                st.pop();
+            }
+            k++;
+    }            
+    return v;
+}
