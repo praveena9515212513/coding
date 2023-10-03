@@ -1,0 +1,11 @@
+reverse of linked list
+ListNode* reverseList(ListNode* head) {
+    ListNode *newn=NULL,*l1;
+    while(head){
+        l1=head;
+        head=head->next;
+        l1->next=newn;
+        newn=l1;
+    }
+    return newn;
+}
