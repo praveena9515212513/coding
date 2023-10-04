@@ -1,0 +1,28 @@
+class Solution
+{
+    public:
+    struct meetings{
+        int s;
+        int e;
+    };
+    static bool compareTWO(pair<int,int>a,pair<int,int>b){
+        return(a.second<b.second);
+    }
+    int maxMeetings(int start[], int end[], int n)
+    {
+        vector<pair<int,int>>v;
+        for(int i=0;i<n;i++){
+            v.push_back({start[i],end[i]});
+        }
+        sort(v.begin(),v.end(),compareTWO);
+        int i=1,j=0,c=1;
+        while(i<n){
+            if(v[j].second<v[i].first){
+                c++;
+                j=i;
+            }
+            i++;
+        }
+        return c;
+    }
+};
